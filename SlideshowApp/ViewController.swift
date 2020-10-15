@@ -70,10 +70,12 @@ class ViewController: UIViewController {
             self.startTimer()
             nextButton.isEnabled = false
             backButton.isEnabled = false
+            startStop.setTitle("停止", for: .normal)
         }else{
             self.pauseTimer()
             nextButton.isEnabled = true
             backButton.isEnabled = true
+            startStop.setTitle("再生", for: .normal)
         }
    
     }
@@ -94,8 +96,20 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let resultViewController:ResultViewController = segue.destination as! ResultViewController
         resultViewController.image = gazou.image
+        if self.timer == nil {
+        self.startTimer()
+        nextButton.isEnabled = false
+        backButton.isEnabled = false
+        }else{
+        self.pauseTimer()
+        nextButton.isEnabled = true
+        backButton.isEnabled = true
+        startStop.setTitle("再生", for: .normal)
+             }
+        
+         }
     }
-}
+
     
     
     
